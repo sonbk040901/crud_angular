@@ -1,0 +1,22 @@
+<div class="h-full overflow-y-auto p-4">
+  <app-government-search-form (search)="onSearch($event)" />
+  <nz-divider />
+  <div class="my-3 flex justify-between items-center"><span>Tìm thấy {{ total }} kết quả</span>
+    <button nz-button nzType="primary" nzGhost (click)="showCreateModal()">
+      <span nz-icon nzType="plus" nzTheme="outline"></span>
+      Thêm mới
+    </button>
+  </div>
+  <app-government-search-result
+    [currentPage]="currentPage" (currentPageChange)="onCurrentPageChange($event)"
+    [total]="total" [data]="data" [loading]="loading"
+    (selectItem)="onSelectItem($event)"
+    (selectItemDelete)="onSelectItemDelete($event)"
+  />
+  <nz-modal [(nzVisible)]="isModalVisible" [nzFooter]="null" [nzWidth]="700" (nzOnCancel)="hideModal()"
+            (nzOnOk)="hideModal()">
+    <ng-container *nzModalContent>
+      <app-create-form [isEdit]="mode === 'edit'" [data]="selectedItem" (create)="createCategory($event)" />
+    </ng-container>
+  </nz-modal>
+</div>

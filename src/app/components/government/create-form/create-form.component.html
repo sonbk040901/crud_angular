@@ -1,0 +1,43 @@
+<form [formGroup]="searchForm" (submit)="onSubmit()">
+  <h1>Tạo mới danh mục</h1>
+  <div class="grid grid-cols-2 gap-x-5 gap-y-3">
+    <div>
+      <label for="code">Mã danh mục</label>
+      <input id="code" nz-input type="text" formControlName="code">
+    </div>
+    <div>
+      <label for="name">Tên danh mục</label>
+      <input id="name" nz-input type="text" formControlName="name">
+    </div>
+    <div>
+      <label for="organization">Tên cơ quan</label>
+      <input id="organization" nz-input type="text" formControlName="organization">
+    </div>
+    <div>
+      <label for="status">Trạng thái danh mục</label>
+      <div>
+        <nz-select class="w-full" id="status" nzAllowClear nzPlaceHolder="Trạng thái" formControlName="status">
+          <nz-option [nzValue]="1" nzCustomContent nzLabel="Sử dụng">
+            <nz-tag nzColor="green">Sử dụng</nz-tag>
+          </nz-option>
+          <nz-option [nzValue]="2" nzCustomContent nzLabel="Không sử dụng">
+            <nz-tag nzColor="orange">Không sử dụng</nz-tag>
+          </nz-option>
+          <nz-option [nzValue]="3" nzCustomContent nzLabel="Đã xóa">
+            <nz-tag nzColor="error">Đã xóa</nz-tag>
+          </nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div>
+      <label for="expired">Thời hạn lưu trữ</label>
+      <div>
+        <nz-date-picker nzFormat="dd/MM/YYYY" class="w-full" id="expired" formControlName="expired" />
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-end mt-3 border-2 border-gray-500">
+    <button nz-button nzType="primary" type="submit">{{ isEdit ? 'Xác nhận sửa' : 'Tạo danh mục' }}</button>
+  </div>
+</form>
+
